@@ -2,6 +2,7 @@ import React from 'react';
 import { BooksProvider } from './contexts/BooksContext.jsx';
 import SearchForm from './components/SearchForm.jsx';
 import BookList from './components/BookList.jsx';
+import './App.css'
 
 function App() {
   return (
