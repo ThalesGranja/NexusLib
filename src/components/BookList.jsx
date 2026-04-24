@@ -9,7 +9,9 @@ const BookList = () => {
 
   if (error) return null;
 
-  if (!books || books.length === 0) {
+  if (!books) return null;
+
+  if (books.length === 0) {
     return <p style={{ textAlign: 'center' }}>Nenhum livro encontrado. Tente outra busca.</p>;
   }
 

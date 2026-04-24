@@ -3,7 +3,7 @@ import React, { createContext, useReducer } from 'react';
 export const BooksContext = createContext();
 
 const initialState = {
-  books: [],
+  books: null,
   loading: false,
   error: null,
 };
