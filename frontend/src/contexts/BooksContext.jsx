@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from 'react';
+import api from '../api';
 
 export const BooksContext = createContext();
 
@@ -24,18 +25,19 @@ function booksReducer(state, action) {
 export const BooksProvider = ({ children }) => {
   const [state, dispatch] = useReducer(booksReducer, initialState);
 
+  // Busca livros atraves do backend (rota /api/search), que por sua vez
+  // consulta a Open Library. Isso mantem a comunicacao do front-end
+  // restrita ao back-end via HTTP, conforme exigido na proposta.
   const searchBooks = async (query) => {
     if (!query) return;
 
     dispatch({ type: 'FETCH_START' });
     try {
-      const response = await fetch(`https://openlibrary.org/search.json?title=${query}`);
-      const data = await response.json();
-
-      dispatch({ type: 'FETCH_SUCCESS', payload: data.docs });
-
+      const response = await api.get('/search', { params: { title: query } });
+      dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
     } catch (err) {
-      dispatch({ type: 'FETCH_ERROR', payload: 'Erro ao buscar livros.' });
+      const message = err.response?.data?.message || 'Erro ao buscar livros.';
+      dispatch({ type: 'FETCH_ERROR', payload: message });
     }
   };
 

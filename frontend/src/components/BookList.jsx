@@ -7,7 +7,7 @@ const BookList = () => {
 
   if (loading) return <p style={{ textAlign: 'center' }}>Carregando livros...</p>;
 
-  if (error) return null;
+  if (error) return <p style={{ textAlign: 'center', color: '#e74c3c' }}>{error}</p>;
 
   if (!books) return null;
 
@@ -17,8 +17,8 @@ const BookList = () => {
 
   return (
     <div className="book-grid">
-      {books.map((book) => (
-        <BookCard key={book.key} book={book} />
+      {books.map((book, index) => (
+        <BookCard key={book.openLibraryId || `${book.title}-${index}`} book={book} />
       ))}
     </div>
   );
