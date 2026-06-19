@@ -5,9 +5,6 @@ const Favorite = require('../models/Favorite');
 const { verifyToken } = require('../config/auth');
 const logger = require('../config/logger');
 
-// POST /api/favorites
-// Funcionalidade de Insercao: usuario logado marca um livro (vindo da busca)
-// como favorito. Se o livro ainda nao existe no banco, ele e criado.
 router.post('/', verifyToken, async (req, res) => {
   const userId = req.user.userId;
   const { title, author, year, coverUrl, openLibraryId } = req.body;
@@ -20,7 +17,6 @@ router.post('/', verifyToken, async (req, res) => {
   try {
     let book = null;
 
-    // Evita duplicar o mesmo livro no catalogo
     if (openLibraryId) {
       book = await Book.findOne({ openLibraryId });
     }
@@ -52,8 +48,6 @@ router.post('/', verifyToken, async (req, res) => {
   }
 });
 
-// GET /api/favorites
-// Lista os livros favoritados pelo usuario autenticado.
 router.get('/', verifyToken, async (req, res) => {
   try {
     const favorites = await Favorite.find({ user: req.user.userId })
@@ -72,8 +66,6 @@ router.get('/', verifyToken, async (req, res) => {
   }
 });
 
-// DELETE /api/favorites/:favoriteId
-// Remove um livro da lista de favoritos do usuario.
 router.delete('/:favoriteId', verifyToken, async (req, res) => {
   try {
     const favorite = await Favorite.findOneAndDelete({

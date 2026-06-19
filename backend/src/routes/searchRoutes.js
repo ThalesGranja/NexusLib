@@ -4,13 +4,9 @@ const router = express.Router();
 const { verifyToken } = require('../config/auth');
 const logger = require('../config/logger');
 
-// Cache simples em memoria com TTL, para evitar bater na API externa
-// repetidamente com a mesma busca (requisito: estrategia de cache no back-end).
 const CACHE_TTL_MS = 5 * 60 * 1000;
 const searchCache = new Map();
 
-// GET /api/search?title=...
-// Funcionalidade de Busca: apenas usuarios autenticados podem pesquisar livros.
 router.get('/', verifyToken, async (req, res) => {
   const { title } = req.query;
 

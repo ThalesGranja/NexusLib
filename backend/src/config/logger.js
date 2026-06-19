@@ -1,8 +1,6 @@
 const winston = require('winston');
 const path = require('path');
 
-// Logger central da aplicacao - registra autenticacao, buscas, inserções e erros
-// (requisito de avaliacao: falhas de registro e monitoramento de seguranca)
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(

@@ -2,8 +2,6 @@ const jwt = require('jsonwebtoken');
 const rateLimit = require('express-rate-limit');
 const logger = require('./logger');
 
-// Middleware que protege rotas privadas, validando o token JWT enviado
-// no cabecalho Authorization: Bearer <token>
 const verifyToken = (req, res, next) => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
 

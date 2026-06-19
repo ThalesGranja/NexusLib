@@ -1,6 +1,3 @@
-// Script utilitario para criar um usuario de teste no banco,
-// ja que o login nao precisa de uma rota publica de cadastro (ver proposta).
-// Uso: npm run create-user
 require('dotenv').config();
 const mongoose = require('mongoose');
 const User = require('./models/User');

@@ -4,7 +4,7 @@ import api from '../api';
 const PLACEHOLDER_COVER = 'https://via.placeholder.com/150x200?text=Sem+Capa';
 
 const BookCard = ({ book }) => {
-  const [status, setStatus] = useState('idle'); // idle | saving | saved | error
+  const [status, setStatus] = useState('idle');
   const [feedback, setFeedback] = useState('');
 
   const handleFavorite = async () => {

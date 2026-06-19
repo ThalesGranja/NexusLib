@@ -6,9 +6,6 @@ const User = require('../models/User');
 const logger = require('../config/logger');
 const { loginLimiter } = require('../config/auth');
 
-// POST /api/auth/register
-// Nao exigido pela proposta (usuarios podem ser inseridos direto no banco),
-// mas mantido como utilitario para facilitar testes locais.
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
 
@@ -33,7 +30,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// POST /api/auth/login
 router.post('/login', loginLimiter, async (req, res) => {
   const { email, password } = req.body;
 

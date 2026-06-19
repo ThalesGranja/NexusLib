@@ -25,9 +25,6 @@ function booksReducer(state, action) {
 export const BooksProvider = ({ children }) => {
   const [state, dispatch] = useReducer(booksReducer, initialState);
 
-  // Busca livros atraves do backend (rota /api/search), que por sua vez
-  // consulta a Open Library. Isso mantem a comunicacao do front-end
-  // restrita ao back-end via HTTP, conforme exigido na proposta.
   const searchBooks = async (query) => {
     if (!query) return;
 

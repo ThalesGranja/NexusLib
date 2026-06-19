@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const logger = require('./logger');
 
-// Configuracao do pool de conexoes do MongoDB (requisito de avaliacao)
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGO_URI, {

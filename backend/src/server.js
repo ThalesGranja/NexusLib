@@ -12,16 +12,13 @@ dotenv.config();
 
 const app = express();
 
-// Seguranca: cabecalhos HTTP seguros e protecao contra NoSQL injection
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(mongoSanitize());
 
-// Otimizacao: compressao gzip das respostas do servidor
 app.use(compression());
 
-// Conexao com o banco de dados (com pool de conexoes configurado)
 connectDB();
 
 // Rotas

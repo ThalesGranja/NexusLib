@@ -6,7 +6,6 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, required: true },
 }, { timestamps: true });
 
-// Criptografa a senha antes de salvar (requisito: falhas de criptografia)
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
